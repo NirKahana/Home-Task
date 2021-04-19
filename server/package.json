@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "init": "npm i && npm run schema && npm run migrate && npm run seed && npm run dev",
+    "schema": "npx sequelize db:create",
+    "migrate": "npx sequelize db:migrate",
+    "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all",
+    "restart": "npx sequelize db:migrate:undo:all && npm run migrate && npm run seed && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
+}
