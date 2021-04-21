@@ -15,5 +15,4 @@ MYSQL_DATABASE="hometaskdb"<br>
 MYSQL_HOST="localhost"</code><br>
 6) Open the terminal (Ctr + J), and type <code>cd server</code>, and then <code>npm run init</code>.<br>
 <h2>Client</h2>
-7) Open another terminal, and in this new terminal, type <code>cd client</code>, then <code>npm i</code>.<br>
-8) Type <code>npm start</code>.
+7) Open another terminal, and in this new terminal, type <code>cd client</code>, then <code>npm init</code>.<br>
