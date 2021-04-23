@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import Basket from "./Basket";
-import Catalog from "./Catalog";
+import Basket from "./Basket/Basket";
+import Catalog from ".//Catalog/Catalog";
 
 export default function ShopContainer() {
   
@@ -14,12 +14,12 @@ export default function ShopContainer() {
       setProducts(products);
       setBasketProducts(basketProducts);
     })()
-  }, [])
-  return (products) ? (
+  }, []);
+  return (products && basketProducts) ? (
     <>
       <div className="flex shop-container">
-        <Basket basketProducts={basketProducts}/>
-        <Catalog products={products}/>
+        <Basket basketProducts={basketProducts} setBasketProducts={setBasketProducts} setProducts={setProducts}/>
+        <Catalog products={products} setBasketProducts={setBasketProducts} setProducts={setProducts}/>
       </div>
     </>
   ): null

@@ -3,9 +3,10 @@ import { ShoppingCart } from 'react-feather';
 
 import BasketCard from "./BasketCard";
 
-export default function Basket({ basketProducts }) {
+export default function Basket({ basketProducts, setBasketProducts, setProducts }) {
   
   const [cartIsOpen, setCartIsOpen] = useState(true);
+  
   const onCartClick = () => {
     setCartIsOpen(!cartIsOpen)
   }
@@ -23,7 +24,7 @@ export default function Basket({ basketProducts }) {
         <h2>Basket</h2>
         <div className="flex column alignCenter basket-list">
           {basketProducts.map((basketProduct, index) => (
-            <BasketCard basketProduct={basketProduct} key={index}/>
+            <BasketCard basketProduct={basketProduct} key={index} setBasketProducts={setBasketProducts} setProducts={setProducts}/>
           ))}
         </div>
         <div className="total-price">Total Price: {calcBasketPrice()}$</div>

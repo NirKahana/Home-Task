@@ -1,1 +1,1 @@
-PUT http://localhost:3001/api/v1/basket/remove/2
+DELETE http://localhost:3001/api/v1/basket/15
