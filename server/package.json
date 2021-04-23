@@ -10,7 +10,6 @@
     "schema": "npx sequelize db:create",
     "migrate": "npx sequelize db:migrate",
     "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all",
-    "restart": "npx sequelize db:migrate:undo:all && npm run migrate && npm run seed && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
