@@ -9,10 +9,13 @@ const router = Router();
 router.get('/all', async (req, res) => {
   const basketProducts = await BasketProduct.findAll({
     raw: true,
-    attributes: ['productId', 'quantity', [db.Sequelize.col("product.price"), "price"]],
+    attributes: ['productId', 'quantity',
+                [db.Sequelize.col('product.price'), 'price'],
+                [db.Sequelize.col('product.name'), 'name'],
+                [db.Sequelize.col('product.url'), 'url']
+    ],
     include: [{model: Product, as: 'product', attributes: []}]
   });
-  
   return res.json(basketProducts);
 });
 
@@ -47,6 +50,8 @@ router.put('/remove/:id', async (req, res) => {
 // ADD ITEM TO BASKET
 router.put('/add/:id', async (req, res) => {
   const {id} = req.params; // id received from the client
+  const allProducts = await Product.findAll();
+  if(!allProducts.some(product => product.id === Number(id))) res.status(400).send('invalid product id')
   if(isNaN(Number(id))) res.status(400).send('bad request')
   const existingBasketProduct = await BasketProduct.findOne({where: {
     productId: id
@@ -63,7 +68,7 @@ router.put('/add/:id', async (req, res) => {
   }
   await BasketProduct.update({quantity: existingBasketProduct.quantity+1}, {
     where: {
-      id: id
+      productId: id
     }
   });
   const updatedBasketProduct = await BasketProduct.findOne({where: {

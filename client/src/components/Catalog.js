@@ -1,16 +1,15 @@
 import React from 'react'
 
-export default function Catalog() {
+import Card from "./Card"
+
+export default function Catalog({ products }) {
   return (
     <div className="flex column alignCenter catalog">
       <h2>Catalog</h2>
       <div className="grid">
-        <div className="card">Item 1</div>
-        <div className="card">Item 2</div>
-        <div className="card">Item 3</div>
-        <div className="card">Item 4</div>
-        <div className="card">Item 5</div>
-        <div className="card">Item 6</div>
+        {products.map((product, index) => (
+          <Card product={product} key={index}/>
+        ))}
       </div>
     </div>
   )

@@ -6,36 +6,80 @@ body {
   /* font-family: 'Ubuntu', sans-serif; */
   /* font-family: 'Roboto', sans-serif; */
 }
+h2 {
+  padding: 1em 0;
+  margin: 0 auto;
+}
+.header {
+  width: 100%;
+  padding: 0.3em 0;
+  background-color: rgb(77, 55, 112);
+  font-size: 2em;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 -6px 10px -6px inset black;
+}
+.header > div {
+  margin-left: 1em;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 10em);
-  grid-auto-rows: minmax(10em, 15em);
+  grid-template-columns: repeat(5, 10em);
+  grid-auto-rows: minmax(15em, auto);
   column-gap: 5vw;
-  row-gap: 5vw;
+  row-gap: 3vh;
+}
+@media only screen and (max-width: 1300px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 10em);
+    grid-auto-rows: minmax(15em, auto);
+    column-gap: 5vw;
+    row-gap: 3vh;
+  }
 }
 @media only screen and (max-width: 1100px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 10em);
-    grid-auto-rows: minmax(10em, 15em);
+    grid-auto-rows: minmax(15em, auto);
     column-gap: 5vw;
-    row-gap: 5vw;
+    row-gap: 3vh;
   }
 }
 @media only screen and (max-width: 850px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 10em);
-    grid-auto-rows: minmax(10em, 15em);
-    column-gap: 3vw;
-    row-gap: 3vw;
+    grid-auto-rows: minmax(15em, auto);
+    column-gap: 5vw;
+    row-gap: 3vh;
+  }
+}
+@media only screen and (max-width: 670px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 10em;
+    grid-auto-rows: minmax(15em, auto);
+    /* column-gap: 3vw; */
+    row-gap: 3vh;
   }
 }
 .card {
   font-size: 1.5em;
   font-weight: 700;
+  /* border: 1px solid black; */
+  /* border-radius: 5px; */
+}
+.basket-card {
+  font-size: 1.5em;
+  font-weight: 700;
   border: 1px solid black;
   border-radius: 5px;
+  width: 4em;
+  margin: 0.3em auto;
+  /* max-width: 10em; */
 }
 .flex {
   display: flex;
@@ -59,26 +103,25 @@ body {
   flex-grow: 1;
   overflow-y: hidden;
 }
-.header {
-  height: 250px;
-  width: 100%;
-  position: static;
-  background-color: rgb(77, 55, 112);
-  font-size: 2em;
-  font-weight: 500;
-  color: white;
-  box-shadow: 0 -6px 10px -6px inset black;
-}
-.header > div {
-  margin-left: 1em;
-}
 .basket {
   min-width: 15em;
   border-right: 2px solid black;
   box-shadow: -1px 0 10px -2px inset black;
+  position: relative;
+}
+.closed-basket {
+  margin-left: -15em;
+  border-right: 2px solid black;
+  box-shadow: -1px 0 10px -2px inset black;
+  position: relative;
 }
 .basket > h2 {
-  position: static;
+  /* display: block; */
+  width: 100%;
+  text-align: center;
+  /* margin: 0 auto; */
+  /* padding: 0.75em 0; */
+  border-bottom: 1px solid;
 }
 .basket-list {
   overflow-y: scroll;
@@ -86,16 +129,16 @@ body {
 }
 .basket-list::-webkit-scrollbar {
   display: none;
-  /* color: brown; */
 }
 .total-price {
   font-size: 1.75em;
   font-weight: bold;
-  width: 70%;
+  /* width: 100%; */
+  width: 60%;
   border: 1px solid black;
   border-radius: 5px;
-  padding: 0.25em;
-  margin-bottom: 1em;
+  padding: 0.25 0em;
+  margin: 0.5em auto;
   background-color: rgb(139, 90, 146);
   justify-self: flex-end;
   transition: 200ms;
@@ -108,4 +151,55 @@ body {
 .catalog {
   background: linear-gradient(110deg, rgb(175, 149, 179) 0%, #f2f2f2 90%);        
   flex-grow: 1;
+  overflow-y: scroll;
+}
+.catalog::-webkit-scrollbar {
+  background: rgb(218, 176, 231);
+  width: 12px;
+}
+.catalog::-webkit-scrollbar-thumb {
+  background: rgb(178, 134, 196);
+  border: 1px solid rgb(77, 55, 112);
+  border-radius: 3px;
+  /* background: rgb(77, 55, 112); */
+}
+.product-image {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: block;
+}
+.cart-icon {
+  position: absolute;
+  right: -3em;
+  top: 1em;
+  align-self: flex-end;
+  justify-self: flex-start;
+  height: 25px;
+  z-index: 1;
+  cursor: pointer;
+}
+.number-input {
+  height: 1.5em;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin: 0.2em 0.5em;
+}
+.quantity-icon {
+  cursor: pointer;
+}
+.add-to-cart {
+  font-size: medium;
+  padding: 0.1em;
+  margin: 0.3em auto;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #44ae45;
+  cursor: pointer;
+}
+.basket-product-name {
+  font-size: medium;
+}
+.basket-product-quantity {
+  margin: 0 0.3em;
 }

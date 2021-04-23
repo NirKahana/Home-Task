@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { PlusCircle, MinusCircle } from 'react-feather';
 
 
-export default function Card({ product }) {
+export default function BasketCard({ basketProduct }) {
+
   const [itemQuantity, setItemQuantity] = useState(0);
   const onQuantityChange = (e) => {
     setItemQuantity(Number(e.target.value))
@@ -18,23 +19,25 @@ export default function Card({ product }) {
     }
   }
   return (
-    <div className="card flex column alignCenter" >
-      <img src={process.env.PUBLIC_URL + `/images/${product.url}`} className="product-image"/>
-      {/* <div className="price">{product.price} $</div> */}
+    <div className="basket-card flex column alignCenter">
+      <img src={process.env.PUBLIC_URL + `/images/${basketProduct.url}`} className="product-image"/>
       <div className="flex alignCenter">
         <MinusCircle className="quantity-icon" onClick={onMinusClicked}/>
-        <input type="number"
+        {/* <input type="number"
               value={itemQuantity}
                min="0" 
                max="100" 
                placeholder="0" 
                className="number-input" 
                onChange={onQuantityChange}
-        />
+        /> */}
+        <div className="basket-product-quantity">{basketProduct.quantity}</div>
         <PlusCircle className="quantity-icon" onClick={onPlusClicked}/>
       </div>
-      <div className="add-to-cart">Add To Cart</div>
-      <div>{product.name} {product.price}$</div>
+      {/* <div className="add-to-cart">
+        Add To Cart
+      </div> */}
+      <div className="basket-product-name">{basketProduct.name}</div>
     </div>
   )
 }
