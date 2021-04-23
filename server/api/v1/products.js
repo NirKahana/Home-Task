@@ -22,22 +22,33 @@ router.get('/all', async (req, res) => {
 //   return res.json(products);
 // });
 
+
+// SEARCH PRODUCTS BY NAME
+router.get('/search', async (req, res) => {
+  const searchString = req.query.q;
+  if(typeof searchString !== 'string') res.status(400).send('bad request');
+  const filteredProducts = await Product.findAll({
+    raw: true,
+    attributes: ['id', 'name', 'price', 'url',
+                [db.Sequelize.col('basketproduct.quantity'), 'quantityInBasket'],
+    ],
+    include: [{model: BasketProduct, as: 'basketproduct', attributes: []}],
+    where: {
+      name: {
+        [db.Sequelize.Op.regexp]: `^${searchString}`
+      }
+    },
+    order: ['name']
+  });
+  return res.json(filteredProducts);
+});
+
 // GET PRODUCT BY ID
 router.get('/:id', async (req, res) => {
   const {id} = req.params; // id received from the client
   const product = await Product.findByPk(id);
   return res.json(product);
 });
-
-// GET PRODUCT BY NAME
-// router.get('/', async (req, res) => {
-//   const productName = req.query.name; // name received from the client
-//   const returnedProduct = await Product.findOne({
-//     where: {name: productName}
-//   });
-//   return res.json(returnedProduct);
-// });
-
 
 
 module.exports = router;

@@ -1,6 +1,5 @@
 body {
   background-color: rgb(175, 149, 179);
-  /* background-color: rgb(202, 187, 204); */
   margin: 0;
   font-family: 'Nunito', sans-serif;
   /* font-family: 'Ubuntu', sans-serif; */
@@ -62,15 +61,12 @@ h2 {
     display: grid;
     grid-template-columns: 10em;
     grid-auto-rows: minmax(15em, auto);
-    /* column-gap: 3vw; */
     row-gap: 6vh;
   }
 }
 .card {
   font-size: 1.5em;
   font-weight: 700;
-  /* border: 1px solid black; */
-  /* border-radius: 5px; */
 }
 .basket-card {
   font-size: 1.5em;
@@ -79,7 +75,6 @@ h2 {
   border-radius: 5px;
   width: 6em;
   margin: 0.3em auto;
-  /* max-width: 10em; */
 }
 .flex {
   display: flex;
@@ -110,22 +105,18 @@ h2 {
   position: relative;
 }
 .closed-basket {
-  margin-left: -15em;
+  margin-left: -14em;
   border-right: 2px solid black;
   box-shadow: -1px 0 10px -2px inset black;
   position: relative;
 }
 .basket > h2 {
-  /* display: block; */
   width: 100%;
   text-align: center;
-  /* margin: 0 auto; */
-  /* padding: 0.75em 0; */
   border-bottom: 1px solid;
 }
 .basket-list {
   overflow-y: scroll;
-  /* -ms-overflow-style: none; */
 }
 .basket-list::-webkit-scrollbar {
   display: none;
@@ -133,7 +124,6 @@ h2 {
 .total-price {
   font-size: 1.75em;
   font-weight: bold;
-  /* width: 100%; */
   width: 60%;
   border: 1px solid black;
   border-radius: 5px;
@@ -161,7 +151,11 @@ h2 {
   background: rgb(178, 134, 196);
   border: 1px solid rgb(77, 55, 112);
   border-radius: 3px;
-  /* background: rgb(77, 55, 112); */
+}
+.search {
+  line-height: 2em;
+  border: 1px solid black;
+  margin-bottom: 2em;
 }
 .product-image {
   width: 100%;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PlusCircle, MinusCircle } from 'react-feather';
 
 
-export default function CatalogCard({ product, setBasketProducts, setProducts }) {
+export default function CatalogCard({ product, setBasketProducts, setProducts, inputValue }) {
 
   const inputRef = useRef();
 
@@ -16,14 +16,22 @@ export default function CatalogCard({ product, setBasketProducts, setProducts })
         quantity: Number(e.target.value)
     })).data;
       setBasketProducts(updatedProductsList);
-      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/all`)).data;
+      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
+        params: {
+          q: inputValue
+        }
+      })).data;
       setProducts(updatedCatalogProductsList);
   } 
   const onMinusClicked = async () => {
     if(product.quantityInBasket > 0) {
       const updatedBasketProductsList = (await axios.put(`/api/v1/basket/minus/${product.id}`)).data;
       setBasketProducts(updatedBasketProductsList);
-      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/all`)).data;
+      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
+        params: {
+          q: inputValue
+        }
+      })).data;
       setProducts(updatedCatalogProductsList);
     }
   }
@@ -31,7 +39,11 @@ export default function CatalogCard({ product, setBasketProducts, setProducts })
     if(product.quantityInBasket < 100) {
       const updatedBasketProductsList = (await axios.put(`/api/v1/basket/plus/${product.id}`)).data;
       setBasketProducts(updatedBasketProductsList);
-      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/all`)).data;
+      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
+        params: {
+          q: inputValue
+        }
+      })).data;
       setProducts(updatedCatalogProductsList);
     }
   }
