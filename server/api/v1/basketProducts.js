@@ -8,9 +8,11 @@ const router = Router();
 // GET ALL BASKET PRODUCTS
 router.get('/all', async (req, res) => {
   const basketProducts = await BasketProduct.findAll({
-    attributes: ['productId', 'quantity'],
-    include: [{model: Product, attributes: ['price']}]
+    raw: true,
+    attributes: ['productId', 'quantity', [db.Sequelize.col("product.price"), "price"]],
+    include: [{model: Product, as: 'product', attributes: []}]
   });
+  
   return res.json(basketProducts);
 });
 
