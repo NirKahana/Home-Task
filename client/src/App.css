@@ -124,6 +124,10 @@ h2 {
   display: none;
 }
 .total-price {
+  position: absolute;
+  bottom: 0;
+  box-shadow: 1px 1px 10px 1px black;
+  text-align: center;
   font-size: 1.75em;
   font-weight: bold;
   width: 80%;

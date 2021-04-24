@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "init": "npm install --save-dev sequelize-cli && npm install --save-dev nodemon && npm i && npm run schema && npm run migrate && npm run seed && npm run dev",
+    "launch": "npm i && npm run db",
+    "db": "npm run schema && npm run migrate && npm run seed && npm start",
     "schema": "npx sequelize db:create",
     "migrate": "npx sequelize db:migrate",
     "seed": "npx sequelize db:seed:undo:all && npx sequelize db:seed:all",
@@ -16,10 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.2.0"
-   },
-  "devDependencies": {
-    "nodemon": "^2.0.7",
+    "dotenv": "^8.2.0",
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "devDependencies": {}
 }
