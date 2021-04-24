@@ -2,6 +2,13 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import { PlusCircle, MinusCircle } from 'react-feather';
 
+function debounce(func, timeout = 300){
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
 
 export default function CatalogCard({ product, setBasketProducts, setProducts, inputValue }) {
 
@@ -9,6 +16,9 @@ export default function CatalogCard({ product, setBasketProducts, setProducts, i
 
   const onWheel = () => {
     inputRef.current.blur();
+  };
+  const onFocus = () => {
+    inputRef.current.select()
   };
   const onQuantityChange = async (e) => {
     const updatedProductsList = (await axios.put(`/api/v1/basket/quantity`, {
@@ -22,7 +32,8 @@ export default function CatalogCard({ product, setBasketProducts, setProducts, i
         }
       })).data;
       setProducts(updatedCatalogProductsList);
-  } 
+  }
+  const onQuantityChangeDebounced = debounce((e) => onQuantityChange(e), 500);
   const onMinusClicked = async () => {
     if(product.quantityInBasket > 0) {
       const updatedBasketProductsList = (await axios.put(`/api/v1/basket/minus/${product.id}`)).data;
@@ -49,12 +60,11 @@ export default function CatalogCard({ product, setBasketProducts, setProducts, i
   }
   return (
     <div className="card flex column alignCenter" >
-      <img src={process.env.PUBLIC_URL + `/images/${product.url}`} className="product-image"/>
-      {/* <div className="product-title"><span>{product.name}</span><span>{product.price}$</span></div> */}
+      <img src={process.env.PUBLIC_URL + `/images/${product.url}`} className="product-image width100"/>
       <div>{product.name}</div>
       <div className="product-price">{product.price}$</div>
       <div className="flex alignCenter">
-        <MinusCircle className="quantity-icon" onClick={onMinusClicked}/>
+        <MinusCircle className="pointer" onClick={onMinusClicked}/>
         <input type="number"
               value={product.quantityInBasket || 0}
               min="0" 
@@ -63,12 +73,10 @@ export default function CatalogCard({ product, setBasketProducts, setProducts, i
               onChange={onQuantityChange}
               onWheel={onWheel}
               ref={inputRef}
+              onFocus={onFocus}
         />
-        <PlusCircle className="quantity-icon" onClick={onPlusClicked}/>
+        <PlusCircle className="pointer" onClick={onPlusClicked}/>
       </div>
-      {/* <div className="add-to-cart">Add To Cart</div> */}
-      {/* <div>{product.name}</div> */}
-      {/* <div>{product.name} {product.price}$</div> */}
     </div>
   )
 }

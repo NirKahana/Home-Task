@@ -2,15 +2,12 @@ body {
   background-color: rgb(175, 149, 179);
   margin: 0;
   font-family: 'Nunito', sans-serif;
-  /* font-family: 'Ubuntu', sans-serif; */
-  /* font-family: 'Roboto', sans-serif; */
 }
 h2 {
   padding: 1em 0;
   margin: 0 auto;
 }
 .header {
-  width: 100%;
   padding: 0.3em 0;
   background-color: rgb(77, 55, 112);
   font-size: 2em;
@@ -26,37 +23,37 @@ h2 {
   display: grid;
   grid-template-columns: repeat(5, 10em);
   grid-auto-rows: minmax(15em, auto);
-  column-gap: 5vw;
+  column-gap: 8vw;
   row-gap: 6vh;
 }
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1500px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 10em);
     grid-auto-rows: minmax(15em, auto);
-    column-gap: 5vw;
+    column-gap: 8vw;
     row-gap: 6vh;
   }
 }
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1300px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 10em);
     grid-auto-rows: minmax(15em, auto);
-    column-gap: 5vw;
+    column-gap: 8vw;
     row-gap: 6vh;
   }
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1000px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 10em);
     grid-auto-rows: minmax(15em, auto);
-    column-gap: 5vw;
+    column-gap: 8vw;
     row-gap: 6vh;
   }
 }
-@media only screen and (max-width: 670px) {
+@media only screen and (max-width: 770px) {
   .grid {
     display: grid;
     grid-template-columns: 10em;
@@ -71,7 +68,6 @@ h2 {
 .basket-card {
   font-size: 1.5em;
   font-weight: 700;
-  border: 1px solid black;
   border-radius: 5px;
   width: 6em;
   margin: 0.3em auto;
@@ -87,6 +83,12 @@ h2 {
 }
 .alignCenter {
   align-items: center;
+}
+.width100 {
+  width: 100%;
+}
+.pointer {
+  cursor: pointer;
 }
 .page-container {
   width: 100vw;
@@ -111,7 +113,7 @@ h2 {
   position: relative;
 }
 .basket > h2 {
-  width: 100%;
+  /* width: 100%; */
   text-align: center;
   border-bottom: 1px solid;
 }
@@ -124,19 +126,22 @@ h2 {
 .total-price {
   font-size: 1.75em;
   font-weight: bold;
-  width: 60%;
+  width: 80%;
   border: 1px solid black;
   border-radius: 5px;
-  padding: 0.25 0em;
-  margin: 0.5em auto;
+  margin: 0em auto 0.5em auto;
   background-color: rgb(139, 90, 146);
   justify-self: flex-end;
   transition: 200ms;
-  cursor: pointer;
 }
 .total-price:hover {
   background-color: rgb(159, 111, 165);
   transition: 200ms;
+}
+.empty-basket {
+  font-size: large;
+  font-weight: bold;
+  margin: 1em 0;
 }
 .catalog {
   background: linear-gradient(110deg, rgb(175, 149, 179) 0%, #f2f2f2 90%);        
@@ -158,38 +163,28 @@ h2 {
   margin-bottom: 2em;
 }
 .product-image {
-  width: 100%;
+  /* width: 100%; */
   border: 1px solid black;
   border-radius: 5px;
   display: block;
 }
 .cart-icon {
   position: absolute;
-  right: -4em;
+  right: -3em;
   top: 1em;
   align-self: flex-end;
   justify-self: flex-start;
   height: 25px;
   z-index: 1;
-  cursor: pointer;
+}
+.closed {
+  right: -6em;
 }
 .number-input {
   height: 1.5em;
   border-radius: 4px;
   border: 1px solid black;
   margin: 0.2em 0.5em;
-}
-.quantity-icon {
-  cursor: pointer;
-}
-.add-to-cart {
-  font-size: small;
-  padding: 0.1em;
-  margin: 0.3em auto;
-  border: 1px solid black;
-  border-radius: 3px;
-  background-color: #44ae45;
-  cursor: pointer;
 }
 .basket-product-title {
   font-size: medium;
@@ -200,14 +195,13 @@ h2 {
 .basket-product-quantity {
   margin: 0 0.3em;
 }
+.trash-icon{
+  justify-self: flex-end;
+}
 .product-price {
   font-size: medium;
 }
-.product-title {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
+
 .product-title > span {
   margin: 0 0.2em;
 }

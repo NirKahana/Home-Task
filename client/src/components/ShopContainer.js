@@ -7,6 +7,7 @@ export default function ShopContainer() {
   
   const [products, setProducts] = useState();
   const [basketProducts, setBasketProducts] = useState();
+  const [inputValue, setInputValue] = useState('');
   useEffect(() => {
     (async () => {
       const products = (await axios.get('/api/v1/products/all')).data;
@@ -19,7 +20,7 @@ export default function ShopContainer() {
     <>
       <div className="flex shop-container">
         <Basket basketProducts={basketProducts} setBasketProducts={setBasketProducts} setProducts={setProducts}/>
-        <Catalog products={products} setBasketProducts={setBasketProducts} setProducts={setProducts}/>
+        <Catalog products={products} setBasketProducts={setBasketProducts} setProducts={setProducts} setInputValue={setInputValue} inputValue={inputValue}/>
       </div>
     </>
   ): null
