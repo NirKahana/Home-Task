@@ -19,7 +19,7 @@ export default function ShopContainer() {
   return (products && basketProducts) ? (
     <>
       <div className="flex shop-container">
-        <Basket basketProducts={basketProducts} setBasketProducts={setBasketProducts} setProducts={setProducts}/>
+        <Basket basketProducts={basketProducts} setBasketProducts={setBasketProducts} setProducts={setProducts} inputValue={inputValue}/>
         <Catalog products={products} setBasketProducts={setBasketProducts} setProducts={setProducts} setInputValue={setInputValue} inputValue={inputValue}/>
       </div>
     </>

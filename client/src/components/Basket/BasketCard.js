@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { PlusCircle, MinusCircle, Trash } from 'react-feather';
 
 
-export default function BasketCard({ basketProduct, setBasketProducts, setProducts}) {
+export default function BasketCard({ basketProduct, setBasketProducts, setProducts, inputValue}) {
   // const [itemQuantity, setItemQuantity] = useState(0);
   const basketProductPrice = basketProduct.quantity*basketProduct.price;
   // const onQuantityChange = async (e) => {
@@ -22,7 +22,11 @@ export default function BasketCard({ basketProduct, setBasketProducts, setProduc
     if(basketProduct.quantity > 0) {
       const updatedProductsList = (await axios.put(`/api/v1/basket/minus/${basketProduct.productId}`)).data;
       setBasketProducts(updatedProductsList);
-      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/all`)).data;
+      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
+        params: {
+          q: inputValue
+        }
+      })).data;
       setProducts(updatedCatalogProductsList);
     }
   }
@@ -30,14 +34,22 @@ export default function BasketCard({ basketProduct, setBasketProducts, setProduc
     if(basketProduct.quantity < 100) {
       const updatedProductsList = (await axios.put(`/api/v1/basket/plus/${basketProduct.productId}`)).data;
       setBasketProducts(updatedProductsList);
-      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/all`)).data;
+      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
+        params: {
+          q: inputValue
+        }
+      })).data;
       setProducts(updatedCatalogProductsList);
     }
   }
   const onRemoveClicked = async () => {
     const updatedProductsList = (await axios.delete(`/api/v1/basket/${basketProduct.productId}`)).data;
       setBasketProducts(updatedProductsList);
-      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/all`)).data;
+      const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
+        params: {
+          q: inputValue
+        }
+      })).data;
       setProducts(updatedCatalogProductsList);
   }
 
