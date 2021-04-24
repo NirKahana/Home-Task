@@ -147,6 +147,7 @@ h2 {
   background: linear-gradient(110deg, rgb(175, 149, 179) 0%, #f2f2f2 90%);        
   flex-grow: 1;
   overflow-y: scroll;
+  min-width: 200px;
 }
 .catalog::-webkit-scrollbar {
   background: rgb(218, 176, 231);
@@ -209,4 +210,14 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+/* MOBILE */
+@media only screen and (max-width: 430px) {
+  .basket {
+    max-width: 8em;
+    min-width: 8em;
+  }
+  .basket-card {
+    width: 4em;
+  }
 }
