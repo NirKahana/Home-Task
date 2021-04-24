@@ -1,7 +1,7 @@
 body {
   background-color: rgb(175, 149, 179);
   margin: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 h2 {
   padding: 1em 0;
@@ -137,6 +137,7 @@ h2 {
   background-color: rgb(139, 90, 146);
   justify-self: flex-end;
   transition: 200ms;
+  font-family: 'Nunito', sans-serif;
 }
 .total-price:hover {
   background-color: rgb(159, 111, 165);
