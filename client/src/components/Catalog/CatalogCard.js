@@ -2,14 +2,6 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import { PlusCircle, MinusCircle } from 'react-feather';
 
-function debounce(func, timeout = 300){
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
-  };
-}
-
 export default function CatalogCard({ product, setBasketProducts, setProducts, inputValue }) {
 
   const inputRef = useRef();
@@ -33,28 +25,27 @@ export default function CatalogCard({ product, setBasketProducts, setProducts, i
       })).data;
       setProducts(updatedCatalogProductsList);
   }
-  const onQuantityChangeDebounced = debounce((e) => onQuantityChange(e), 500);
   const onMinusClicked = async () => {
     if(product.quantityInBasket > 0) {
       const updatedBasketProductsList = (await axios.put(`/api/v1/basket/minus/${product.id}`)).data;
-      setBasketProducts(updatedBasketProductsList);
       const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
         params: {
           q: inputValue
         }
       })).data;
+      setBasketProducts(updatedBasketProductsList);
       setProducts(updatedCatalogProductsList);
     }
   }
   const onPlusClicked = async () => {
     if(product.quantityInBasket < 100) {
       const updatedBasketProductsList = (await axios.put(`/api/v1/basket/plus/${product.id}`)).data;
-      setBasketProducts(updatedBasketProductsList);
       const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
         params: {
           q: inputValue
         }
       })).data;
+      setBasketProducts(updatedBasketProductsList);
       setProducts(updatedCatalogProductsList);
     }
   }

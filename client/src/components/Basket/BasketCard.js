@@ -21,24 +21,24 @@ export default function BasketCard({ basketProduct, setBasketProducts, setProduc
   const onMinusClicked = async () => {
     if(basketProduct.quantity > 0) {
       const updatedProductsList = (await axios.put(`/api/v1/basket/minus/${basketProduct.productId}`)).data;
-      setBasketProducts(updatedProductsList);
       const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
         params: {
           q: inputValue
         }
       })).data;
+      setBasketProducts(updatedProductsList);
       setProducts(updatedCatalogProductsList);
     }
   }
   const onPlusClicked = async () => {
     if(basketProduct.quantity < 100) {
       const updatedProductsList = (await axios.put(`/api/v1/basket/plus/${basketProduct.productId}`)).data;
-      setBasketProducts(updatedProductsList);
       const updatedCatalogProductsList = (await axios.get(`/api/v1/products/search`, {
         params: {
           q: inputValue
         }
       })).data;
+      setBasketProducts(updatedProductsList);
       setProducts(updatedCatalogProductsList);
     }
   }
